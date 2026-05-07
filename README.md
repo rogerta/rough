@@ -7,8 +7,6 @@ Rough.js works with both [Canvas](https://developer.mozilla.org/en-US/docs/Web/A
 
 ![Rough.js sample](https://roughjs.com/images/cap_demo.png)
 
-[@RoughLib](https://twitter.com/RoughLib) on Twitter.
-
 ## Install
 
 from npm:
@@ -17,16 +15,13 @@ from npm:
 npm install --save roughjs
 ```
 
-Or get the latest using unpkg: https://unpkg.com/roughjs@latest/bundled/rough.js
-
-
 If you are looking for bundled version in different formats, the npm package will have these in the following locations:
 
-CommonJS: `roughjs/bundled/rough.cjs.js`
+CommonJS: `roughjs/dist/rough.cjs.js`
 
-ESM: `roughjs/bundled/rough.esm.js`
+ESM: `roughjs/dist/rough.esm.js`
 
-Browser IIFE: `roughjs/bundled/rough.js`
+Browser IIFE: `roughjs/dist/rough.js`
 
 
 ## Usage
@@ -123,33 +118,9 @@ Some of the core algorithms were adapted from [handy](https://www.gicentre.net/s
 
 Algorithm to convert SVG arcs to Canvas [described here](https://www.w3.org/TR/SVG/implnote.html) was adapted from [Mozilla codebase](https://hg.mozilla.org/mozilla-central/file/17156fbebbc8/content/svg/content/src/nsSVGPathDataParser.cpp#l887)
 
-## Contributors
-
-### Financial Contributors
-
-Become a financial contributor and help us sustain our community. [[Contribute](https://opencollective.com/rough/contribute)]
-
-#### Individuals
-
-<a href="https://opencollective.com/rough"><img src="https://opencollective.com/rough/individuals.svg?width=890"></a>
-
-#### Organizations
-
-Support this project with your organization. Your logo will show up here with a link to your website. [[Contribute](https://opencollective.com/rough/contribute)]
-
-<a href="https://excalidraw.com/"><img src="https://avatars.githubusercontent.com/u/59452120?s=64&v=4"></a>
-<a href="https://www.diagrams.net/"><img src="https://avatars.githubusercontent.com/u/1769238?s=64&v=4"></a>
-<a href="https://terrastruct.com/"><img width="64" height="64" src="https://roughjs.com/images/sponsors/terrastruct.png"></a>
-<a href="https://opencollective.com/rough/organization/0/website"><img src="https://opencollective.com/rough/organization/0/avatar.svg"></a>
-<a href="https://opencollective.com/rough/organization/1/website"><img src="https://opencollective.com/rough/organization/1/avatar.svg"></a>
-<a href="https://opencollective.com/rough/organization/2/website"><img src="https://opencollective.com/rough/organization/2/avatar.svg"></a>
-<a href="https://opencollective.com/rough/organization/3/website"><img src="https://opencollective.com/rough/organization/3/avatar.svg"></a>
-<a href="https://opencollective.com/rough/organization/4/website"><img src="https://opencollective.com/rough/organization/4/avatar.svg"></a>
-<a href="https://opencollective.com/rough/organization/5/website"><img src="https://opencollective.com/rough/organization/5/avatar.svg"></a>
-<a href="https://opencollective.com/rough/organization/6/website"><img src="https://opencollective.com/rough/organization/6/avatar.svg"></a>
-<a href="https://opencollective.com/rough/organization/7/website"><img src="https://opencollective.com/rough/organization/7/avatar.svg"></a>
-<a href="https://opencollective.com/rough/organization/8/website"><img src="https://opencollective.com/rough/organization/8/avatar.svg"></a>
-<a href="https://opencollective.com/rough/organization/9/website"><img src="https://opencollective.com/rough/organization/9/avatar.svg"></a>
-
 ## License
 [MIT License](https://github.com/pshihn/rough/blob/master/LICENSE) (c) [Preet Shihn](https://twitter.com/preetster)
+
+This project is a fork of https://github.com/rogerta/rough by Preet Shihn.
+Significant changes have been made to support TypeScript 6 and simply bundling
+for npmjs.

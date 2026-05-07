@@ -1,15 +1,16 @@
 {
   "compilerOptions": {
-    "target": "es2017",
-    "module": "es2015",
-    "moduleResolution": "node",
+    // "target": "esnext",
+    // "module": "nodenext",
+    // "moduleResolution": "nodenext",
     "lib": [
       "es2017",
       "dom"
     ],
     "declaration": true,
+    "rootDir": "./src/",
     "outDir": "./bin",
-    "baseUrl": ".",
+    //"baseUrl": ".",
     "strict": true,
     "strictNullChecks": true,
     "noImplicitAny": true,

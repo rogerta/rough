@@ -1,18 +1,31 @@
 {
-  "name": "roughjs",
-  "version": "4.6.6",
+  "name": "@rogerta/roughjs",
+  "version": "5.0.0",
+  "type": "module",
   "description": "Create graphics using HTML Canvas or SVG with a hand-drawn, sketchy, appearance.",
-  "main": "bundled/rough.cjs.js",
-  "module": "bundled/rough.esm.js",
+
+  "main": "dist/rough.cjs.js",
+  "module": "dist/rough.esm.js",
   "types": "bin/rough.d.ts",
+  "exports": {
+    ".": {
+      "types": "bin/rough.d.ts",
+      "import": "./dist/rough.mjs",
+      "require": "./dist/rough.cjs",
+      "script": "./dist/rough.iife.js"
+    }
+  },
+  "files": [
+    "dist"
+  ]
+
   "scripts": {
-    "build": "rm -rf bin && tsc && rollup -c",
-    "lint": "eslint --ext ts src",
+    "build": "rm -rf bin && tsc && tsdown bin/rough.js --format cjs,esm,iife --deps.alwaysBundle='**/*' --dts --clean --minify --log-level error",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pshihn/rough.git"
+    "url": "git+https://github.com/rogerta/rough.git"
   },
   "keywords": [
     "canvas",
@@ -22,22 +35,18 @@
     "hand drawn",
     "hand-drawn"
   ],
-  "author": "Preet Shihn <preetshihn@gmail.com>",
+  "author": "Roger Tawa <roger@tawacentral.net>",
+  "originalAuthor": "Preet Shihn <preetshihn@gmail.com>",
+  "contributors": [
+    "Preet Shihn <preetshihn@gmail.com>"
+  ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/pshihn/rough/issues"
+    "url": "https://github.com/rogerta/rough/issues"
   },
-  "homepage": "https://roughjs.com",
   "devDependencies": {
-    "@rollup/plugin-node-resolve": "^13.0.6",
-    "@rollup/plugin-typescript": "^8.3.0",
-    "@typescript-eslint/eslint-plugin": "^4.33.0",
-    "@typescript-eslint/parser": "^4.33.0",
-    "eslint": "^7.32.0",
-    "rollup": "^2.61.0",
-    "rollup-plugin-terser": "^7.0.2",
-    "tslib": "^2.3.1",
-    "typescript": "^4.5.3"
+    "tsdown": "^0.21.10",
+    "typescript": "6.0.3"
   },
   "dependencies": {
     "hachure-fill": "^0.5.2",

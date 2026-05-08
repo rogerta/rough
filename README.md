@@ -122,5 +122,5 @@ Algorithm to convert SVG arcs to Canvas [described here](https://www.w3.org/TR/S
 [MIT License](https://github.com/pshihn/rough/blob/master/LICENSE) (c) [Preet Shihn](https://twitter.com/preetster)
 
 This project is a fork of https://github.com/rough-stuff/rough by Preet Shihn.
-Significant changes have been made to support TypeScript 6 and simply bundling
+Significant changes have been made to support TypeScript 6 and simplify bundling
 for npmjs.

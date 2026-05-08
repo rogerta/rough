@@ -1,7 +1,5 @@
 .cache
 .DS_Store
-bin
-dist
+dist/
 bug.html
 node_modules/
-types/

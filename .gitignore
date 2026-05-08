@@ -3,4 +3,5 @@
 bin
 dist
 bug.html
-node_modules
+node_modules/
+types/

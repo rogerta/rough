@@ -4,19 +4,21 @@
   "type": "module",
   "description": "Create graphics using HTML Canvas or SVG with a hand-drawn, sketchy, appearance.",
 
-  "main": "dist/rough.cjs.js",
-  "module": "dist/rough.esm.js",
-  "types": "bin/rough.d.ts",
+  "main": "./dist/rough.cjs.js",
+  "module": "./dist/rough.esm.js",
+  "types": "./types/rough.d.ts",
+  "typings": "./types/rough.d.ts",
   "exports": {
     ".": {
-      "types": "bin/rough.d.ts",
+      "types": "./types/rough.d.ts",
       "import": "./dist/rough.mjs",
       "require": "./dist/rough.cjs",
       "script": "./dist/rough.iife.js"
     }
   },
   "files": [
-    "dist"
+    "dist",
+    "types"
   ],
 
   "scripts": {

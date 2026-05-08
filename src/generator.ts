@@ -27,17 +27,24 @@ export class RoughGenerator {
     curveTightness: 0,
     curveFitting: 0.95,
     curveStepCount: 9,
+    fill: '',
     fillStyle: 'hachure',
     fillWeight: -1,
     hachureAngle: -41,
     hachureGap: -1,
+    simplification: 0,
     dashOffset: -1,
     dashGap: -1,
     zigzagOffset: -1,
     seed: 0,
+    strokeLineDash: [],
+    strokeLineDashOffset: 0,
+    fillLineDash: [],
+    fillLineDashOffset: 0,
     disableMultiStroke: false,
     disableMultiStrokeFill: false,
     preserveVertices: false,
+    fixedDecimalPlaceDigits: 0,
     fillShapeRoughnessGain: 0.8,
   };
 
@@ -323,10 +330,10 @@ export class RoughGenerator {
    * @param fixedDecimals Optional number of decimal places to fix coordinates to.
    * @returns The SVG path string.
    */
-  opsToPath(drawing: OpSet, fixedDecimals?: number): string {
+  opsToPath(drawing: OpSet, fixedDecimals: number): string {
     let path = '';
     for (const item of drawing.ops) {
-      const data = ((typeof fixedDecimals === 'number') && fixedDecimals >= 0) ? (item.data.map((d) => +d.toFixed(fixedDecimals))) : item.data;
+      const data = fixedDecimals >= 0 ? (item.data.map((d) => +d.toFixed(fixedDecimals))) : item.data;
       switch (item.op) {
         case 'move':
           path += `M${data[0]} ${data[1]} `;
@@ -356,7 +363,7 @@ export class RoughGenerator {
       switch (drawing.type) {
         case 'path':
           path = {
-            d: this.opsToPath(drawing),
+            d: this.opsToPath(drawing, 0),
             stroke: o.stroke,
             strokeWidth: o.strokeWidth,
             fill: NOS,
@@ -364,7 +371,7 @@ export class RoughGenerator {
           break;
         case 'fillPath':
           path = {
-            d: this.opsToPath(drawing),
+            d: this.opsToPath(drawing, 0),
             stroke: NOS,
             strokeWidth: 0,
             fill: o.fill || NOS,
@@ -387,7 +394,7 @@ export class RoughGenerator {
       fweight = o.strokeWidth / 2;
     }
     return {
-      d: this.opsToPath(drawing),
+      d: this.opsToPath(drawing, 0),
       stroke: o.fill || NOS,
       strokeWidth: fweight,
       fill: NOS,

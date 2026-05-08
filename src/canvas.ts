@@ -36,7 +36,7 @@ export class RoughCanvas {
           ctx.save();
           ctx.strokeStyle = o.stroke === 'none' ? 'transparent' : o.stroke;
           ctx.lineWidth = o.strokeWidth;
-          if (o.strokeLineDash) {
+          if (o.strokeLineDash.length > 0) {
             ctx.setLineDash(o.strokeLineDash);
           }
           if (o.strokeLineDashOffset) {
@@ -47,7 +47,7 @@ export class RoughCanvas {
           break;
         case 'fillPath': {
           ctx.save();
-          ctx.fillStyle = o.fill || '';
+          ctx.fillStyle = o.fill;
           const fillRule: CanvasFillRule = (drawable.shape === 'curve' || drawable.shape === 'polygon' || drawable.shape === 'path') ? 'evenodd' : 'nonzero';
           this._drawToContext(ctx, drawing, precision, fillRule);
           ctx.restore();
@@ -66,22 +66,22 @@ export class RoughCanvas {
       fweight = o.strokeWidth / 2;
     }
     ctx.save();
-    if (o.fillLineDash) {
+    if (o.fillLineDash.length > 0) {
       ctx.setLineDash(o.fillLineDash);
     }
     if (o.fillLineDashOffset) {
       ctx.lineDashOffset = o.fillLineDashOffset;
     }
-    ctx.strokeStyle = o.fill || '';
+    ctx.strokeStyle = o.fill;
     ctx.lineWidth = fweight;
     this._drawToContext(ctx, drawing, o.fixedDecimalPlaceDigits);
     ctx.restore();
   }
 
-  private _drawToContext(ctx: CanvasRenderingContext2D, drawing: OpSet, fixedDecimals?: number, rule: CanvasFillRule = 'nonzero') {
+  private _drawToContext(ctx: CanvasRenderingContext2D, drawing: OpSet, fixedDecimals: number, rule: CanvasFillRule = 'nonzero') {
     ctx.beginPath();
     for (const item of drawing.ops) {
-      const data = ((typeof fixedDecimals === 'number') && fixedDecimals >= 0) ? (item.data.map((d) => +d.toFixed(fixedDecimals))) : item.data;
+      const data = fixedDecimals >= 0 ? (item.data.map((d) => +d.toFixed(fixedDecimals))) : item.data;
       switch (item.op) {
         case 'move':
           ctx.moveTo(data[0], data[1]);

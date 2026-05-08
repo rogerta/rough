@@ -3,8 +3,11 @@ import { RoughCanvas } from './canvas';
 import { RoughGenerator } from './generator';
 import { RoughSVG } from './svg';
 
+export type { Config } from './core';
+
 /**
  * The main entry point for Rough.js.
+ *
  * Provides methods to create RoughCanvas, RoughSVG, and RoughGenerator instances.
  */
 export default {
@@ -14,7 +17,7 @@ export default {
    * @param config Optional configuration for the RoughCanvas.
    * @returns A new RoughCanvas instance.
    */
-  canvas(canvas: HTMLCanvasElement, config?: Config): RoughCanvas {
+  canvas(canvas: HTMLCanvasElement, config?: Config) {
     return new RoughCanvas(canvas, config);
   },
 
@@ -24,7 +27,7 @@ export default {
    * @param config Optional configuration for the RoughSVG.
    * @returns A new RoughSVG instance.
    */
-  svg(svg: SVGSVGElement, config?: Config): RoughSVG {
+  svg(svg: SVGSVGElement, config?: Config) {
     return new RoughSVG(svg, config);
   },
 
@@ -33,7 +36,7 @@ export default {
    * @param config Optional configuration for the RoughGenerator.
    * @returns A new RoughGenerator instance.
    */
-  generator(config?: Config): RoughGenerator {
+  generator(config?: Config) {
     return new RoughGenerator(config);
   },
 

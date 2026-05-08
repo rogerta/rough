@@ -62,9 +62,9 @@ export interface Options {
    */
   fill?: string;
   /**
-   * Fill style. Can be 'hachure' (default), 'solid', 'zigzag', 'cross-hatch', 'dots', 'dashed', or 'zigzag-line'.
+   * Fill style.
    */
-  fillStyle?: string;
+  fillStyle?: 'hachure' | 'solid' | 'zigzag' | 'cross-hatch' | 'dots' | 'dashed' | 'zigzag-line';
   /**
    * Weight of the fill lines.
    */
@@ -138,28 +138,8 @@ export interface Options {
 /**
  * Options with all optional properties resolved to their default values.
  */
-export interface ResolvedOptions extends Options {
-  maxRandomnessOffset: number;
-  roughness: number;
-  bowing: number;
-  stroke: string;
-  strokeWidth: number;
-  curveFitting: number;
-  curveTightness: number;
-  curveStepCount: number;
-  fillStyle: string;
-  fillWeight: number;
-  hachureAngle: number;
-  hachureGap: number;
-  dashOffset: number;
-  dashGap: number;
-  zigzagOffset: number;
-  seed: number;
+export interface ResolvedOptions extends Required<Options> {
   randomizer?: Random;
-  disableMultiStroke: boolean;
-  disableMultiStrokeFill: boolean;
-  preserveVertices: boolean;
-  fillShapeRoughnessGain: number;
 }
 
 export declare type OpType = 'move' | 'bcurveTo' | 'lineTo';

@@ -40,7 +40,7 @@ export class RoughSVG {
           path.setAttribute('stroke', o.stroke);
           path.setAttribute('stroke-width', o.strokeWidth + '');
           path.setAttribute('fill', 'none');
-          if (o.strokeLineDash) {
+          if (o.strokeLineDash.length > 0) {
             path.setAttribute('stroke-dasharray', o.strokeLineDash.join(' ').trim());
           }
           if (o.strokeLineDashOffset) {
@@ -53,7 +53,7 @@ export class RoughSVG {
           path.setAttribute('d', this.opsToPath(drawing, precision));
           path.setAttribute('stroke', 'none');
           path.setAttribute('stroke-width', '0');
-          path.setAttribute('fill', o.fill || '');
+          path.setAttribute('fill', o.fill);
           if (drawable.shape === 'curve' || drawable.shape === 'polygon') {
             path.setAttribute('fill-rule', 'evenodd');
           }
@@ -78,10 +78,10 @@ export class RoughSVG {
     }
     const path = doc.createElementNS(SVGNS, 'path');
     path.setAttribute('d', this.opsToPath(drawing, o.fixedDecimalPlaceDigits));
-    path.setAttribute('stroke', o.fill || '');
+    path.setAttribute('stroke', o.fill);
     path.setAttribute('stroke-width', fweight + '');
     path.setAttribute('fill', 'none');
-    if (o.fillLineDash) {
+    if (o.fillLineDash.length > 0) {
       path.setAttribute('stroke-dasharray', o.fillLineDash.join(' ').trim());
     }
     if (o.fillLineDashOffset) {
@@ -107,11 +107,11 @@ export class RoughSVG {
   /**
    * Converts an OpSet to an SVG path string.
    * @param drawing The OpSet to convert.
-   * @param fixedDecimalPlaceDigits Optional number of decimal places to fix coordinates to.
+   * @param fixedDecimals Number of decimal places to fix coordinates to.
    * @returns The SVG path string.
    */
-  opsToPath(drawing: OpSet, fixedDecimalPlaceDigits?: number): string {
-    return this.gen.opsToPath(drawing, fixedDecimalPlaceDigits);
+  opsToPath(drawing: OpSet, fixedDecimals: number): string {
+    return this.gen.opsToPath(drawing, fixedDecimals);
   }
 
   /**

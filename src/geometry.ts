@@ -1,6 +1,16 @@
+/**
+ * A point represented as a tuple of [x, y] coordinates.
+ */
 export type Point = [number, number];
+
+/**
+ * A line represented as a tuple of [Point, Point].
+ */
 export type Line = [Point, Point];
 
+/**
+ * Interface for a rectangle.
+ */
 export interface Rectangle {
   x: number;
   y: number;
@@ -8,6 +18,11 @@ export interface Rectangle {
   height: number;
 }
 
+/**
+ * Calculates the length of a line segment.
+ * @param line The line segment.
+ * @returns The length of the line segment.
+ */
 export function lineLength(line: Line): number {
   const p1 = line[0];
   const p2 = line[1];

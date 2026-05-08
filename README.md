@@ -1,7 +1,6 @@
 # Rough.js
 
-<b>Rough.js</b> is a small (\<9 kB) graphics library that lets you draw in a _sketchy_, _hand-drawn-like_, style.
-The library defines primitives to draw lines, curves, arcs, polygons, circles, and ellipses. It also supports drawing [SVG paths](https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Paths).
+<b>Rough.js</b> is a small (\<9 kB gzipped) graphics library that lets you draw in a _sketchy_, _hand-drawn-like_, style.  The library defines primitives to draw lines, curves, arcs, polygons, circles, and ellipses. It also supports drawing [SVG paths](https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Paths).
 
 Rough.js works with both [Canvas](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API) and [SVG](https://developer.mozilla.org/en-US/docs/Web/SVG).
 
@@ -9,40 +8,59 @@ Rough.js works with both [Canvas](https://developer.mozilla.org/en-US/docs/Web/A
 
 ## Install
 
-from npm:
-
 ```
-npm install --save roughjs
+npm install --save @rogerta/roughjs
 ```
 
-If you are looking for bundled version in different formats, the npm package will have these in the following locations:
+## Import
 
-CommonJS: `roughjs/dist/rough.cjs`
+### Importing into ESM modules (including Typescript)
+```js
+import rough from '@rogerta/roughjs';
+```
 
-ESM: `roughjs/dist/rough.ejs`
+### Importing into CommonJS modules
+```js
+const rough = require('@rogerta/roughjs');
+```
 
-Browser IIFE: `roughjs/dist/rough.iife.js`
+### Importing into Webpages
+```html
+<script src="/server/path/to/rough.iife.js"></script>
+```
 
+### Importing the library in Modern Webpages
+```html
+  <script type="module">
+    import rough from './server/path/to/rough.mjs';
+    ...
+  </script>
+```
 
-## Usage
+## Canvas Usage
+```js
+const canvas = document.getElementById('canvas');  // HTMLCanvasElement.
+const rc = rough.canvas(canvas);
+rc.rectangle(10, 10, 200, 200);
+```
 
+## SVG Usage
+```js
+const svg = document.getElementById('svg');  // SVGSVGElement.
+const rc = rough.svg(svg);
+svg.appendChild(rc.rectangle(10, 10, 200, 200));
+```
+
+## Shapes
+
+### Rectangles
 ![Rough.js rectangle](https://roughjs.com/images/m1.png)
 
 ```js
-const rc = rough.canvas(document.getElementById('canvas'));
 rc.rectangle(10, 10, 200, 200); // x, y, width, height
 ```
 
-or SVG
-
-```js
-const rc = rough.svg(svg);
-let node = rc.rectangle(10, 10, 200, 200); // x, y, width, height
-svg.appendChild(node);
-```
-
 ### Lines and Ellipses
-
 ![Rough.js rectangle](https://roughjs.com/images/m2.png)
 
 ```js
@@ -52,7 +70,6 @@ rc.line(80, 120, 300, 100); // x1, y1, x2, y2
 ```
 
 ### Filling
-
 ![Rough.js rectangle](https://roughjs.com/images/m3.png)
 
 ```js
@@ -78,7 +95,6 @@ Fill styles can be: **hachure**(default), **solid**, **zigzag**, **cross-hatch**
 ![Rough.js fill examples](https://roughjs.com/images/m14.png)
 
 ### Sketching style
-
 ![Rough.js rectangle](https://roughjs.com/images/m4.png)
 
 ```js
@@ -88,7 +104,6 @@ rc.rectangle(220, 15, 80, 80, { bowing: 6, stroke: 'green', strokeWidth: 3 });
 ```
 
 ### SVG Paths
-
 ![Rough.js paths](https://roughjs.com/images/m5.png)
 
 ```js
@@ -103,17 +118,14 @@ SVG Path with simplification:
 ![Rough.js texas map](https://roughjs.com/images/m9.png) ![Rough.js texas map](https://roughjs.com/images/m10.png)
 
 ## Examples
-
 ![Rough.js US map](https://roughjs.com/images/m6.png)
 
 [View examples here](https://github.com/pshihn/rough/wiki/Examples)
 
 ## API & Documentation
-
 [Full Rough.js API](https://github.com/pshihn/rough/wiki)
 
 ## Credits
-
 Some of the core algorithms were adapted from [handy](https://www.gicentre.net/software/#/handy/) processing lib.
 
 Algorithm to convert SVG arcs to Canvas [described here](https://www.w3.org/TR/SVG/implnote.html) was adapted from [Mozilla codebase](https://hg.mozilla.org/mozilla-central/file/17156fbebbc8/content/svg/content/src/nsSVGPathDataParser.cpp#l887)

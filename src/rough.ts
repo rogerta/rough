@@ -3,8 +3,6 @@ import { RoughCanvas } from './canvas';
 import { RoughGenerator } from './generator';
 import { RoughSVG } from './svg';
 
-export type { Config } from './core';
-
 /**
  * The main entry point for Rough.js.
  *

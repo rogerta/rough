@@ -1,6 +1,6 @@
 {
   "name": "@rogerta/roughjs",
-  "version": "5.0.2",
+  "version": "5.0.3",
   "type": "module",
   "description": "Create graphics using HTML Canvas or SVG with a hand-drawn, sketchy, appearance.",
 

@@ -5,7 +5,7 @@ export default defineConfig({
   build: {
     lib: {
       entry: resolve(import.meta.dirname, 'src/rough.ts'),
-      name: 'roughjs',
+      name: 'rough',
       fileName: 'rough',
     },
     minify: 'oxc'

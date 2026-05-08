@@ -1,6 +1,6 @@
-import { Config, Options, ResolvedOptions, Drawable, OpSet } from './core';
+import type { Config, Options, ResolvedOptions, Drawable, OpSet } from './core';
 import { RoughGenerator } from './generator';
-import { Point } from './geometry';
+import type { Point } from './geometry';
 
 export class RoughCanvas {
   private gen: RoughGenerator;

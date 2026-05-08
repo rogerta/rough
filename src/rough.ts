@@ -1,4 +1,4 @@
-import { Config } from './core';
+import type { Config } from './core';
 import { RoughCanvas } from './canvas';
 import { RoughGenerator } from './generator';
 import { RoughSVG } from './svg';

@@ -1,6 +1,7 @@
-import { Config, Options, OpSet, ResolvedOptions, Drawable, SVGNS } from './core';
+import type { Config, Options, OpSet, ResolvedOptions, Drawable } from './core';
+import { SVGNS } from './core';
 import { RoughGenerator } from './generator';
-import { Point } from './geometry';
+import type { Point } from './geometry';
 
 export class RoughSVG {
   private gen: RoughGenerator;

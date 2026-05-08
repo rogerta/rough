@@ -1,5 +1,5 @@
-import { ResolvedOptions } from '../core';
-import { PatternFiller, RenderHelper } from './filler-interface';
+import type { ResolvedOptions } from '../core';
+import type { PatternFiller, RenderHelper } from './filler-interface';
 import { HachureFiller } from './hachure-filler';
 import { ZigZagFiller } from './zigzag-filler';
 import { HatchFiller } from './hatch-filler';

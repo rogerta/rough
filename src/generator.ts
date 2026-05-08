@@ -1,5 +1,5 @@
-import { Config, Options, Drawable, OpSet, Op, ResolvedOptions, PathInfo } from './core.js';
-import { Point } from './geometry.js';
+import type { Config, Options, Drawable, OpSet, Op, ResolvedOptions, PathInfo } from './core.js';
+import type { Point } from './geometry.js';
 import { line, solidFillPolygon, patternFillPolygons, rectangle, ellipseWithParams, generateEllipseParams, linearPath, arc, patternFillArc, curve, svgPath } from './renderer.js';
 import { randomSeed } from './math.js';
 import { curveToBezier } from 'points-on-curve/lib/curve-to-bezier.js';

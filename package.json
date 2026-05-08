@@ -1,28 +1,21 @@
 {
   "name": "@rogerta/roughjs",
-  "version": "5.0.3",
-  "type": "module",
   "description": "Create graphics using HTML Canvas or SVG with a hand-drawn, sketchy, appearance.",
+  "version": "5.0.3",
 
-  "main": "./dist/rough.cjs.js",
-  "module": "./dist/rough.esm.js",
-  "types": "./types/rough.d.ts",
-  "typings": "./types/rough.d.ts",
+  "type": "module",
+  "files": ["dist"],
+  "main": "./dist/rough.umd.cjs",
+  "module": "./dist/rough.js",
   "exports": {
     ".": {
-      "types": "./types/rough.d.ts",
-      "import": "./dist/rough.mjs",
-      "require": "./dist/rough.cjs",
-      "script": "./dist/rough.iife.js"
+      "import": "./dist/rough.js",
+      "require": "./dist/rough.umd.cjs"
     }
   },
-  "files": [
-    "dist",
-    "types"
-  ],
 
   "scripts": {
-    "build": "rm -rf bin && tsc && tsdown bin/rough.js --log-level error",
+    "build": "vite build && tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -51,7 +44,7 @@
     "path-data-parser": "^0.1.0",
     "points-on-curve": "^0.2.0",
     "points-on-path": "^0.2.1",
-    "tsdown": "^0.21.10",
-    "typescript": "6.0.3"
+    "typescript": "6.0.3",
+    "vite": "^8.0.11"
   }
 }

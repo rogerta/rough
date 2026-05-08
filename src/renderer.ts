@@ -1,7 +1,7 @@
-import { ResolvedOptions, Op, OpSet } from './core.js';
-import { Point } from './geometry.js';
+import type { ResolvedOptions, Op, OpSet } from './core.js';
+import type { Point } from './geometry.js';
 import { getFiller } from './fillers/filler.js';
-import { RenderHelper } from './fillers/filler-interface.js';
+import type { RenderHelper } from './fillers/filler-interface.js';
 import { Random } from './math.js';
 import { parsePath, normalize, absolutize } from 'path-data-parser';
 

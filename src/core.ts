@@ -1,4 +1,4 @@
-import { Point } from './geometry';
+import type { Point } from './geometry';
 import { Random } from './math';
 
 export const SVGNS = 'http://www.w3.org/2000/svg';

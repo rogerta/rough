@@ -17,7 +17,7 @@
   },
   "files": [
     "dist"
-  ]
+  ],
 
   "scripts": {
     "build": "rm -rf bin && tsc && tsdown bin/rough.js --format cjs,esm,iife --deps.alwaysBundle='**/*' --dts --clean --minify --log-level error",
@@ -45,13 +45,11 @@
     "url": "https://github.com/rogerta/rough/issues"
   },
   "devDependencies": {
-    "tsdown": "^0.21.10",
-    "typescript": "6.0.3"
-  },
-  "dependencies": {
     "hachure-fill": "^0.5.2",
     "path-data-parser": "^0.1.0",
     "points-on-curve": "^0.2.0",
-    "points-on-path": "^0.2.1"
+    "points-on-path": "^0.2.1",
+    "tsdown": "^0.21.10",
+    "typescript": "6.0.3"
   }
 }

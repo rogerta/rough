@@ -1,5 +1,4 @@
 .cache
 .DS_Store
 dist/
-bug.html
 node_modules/

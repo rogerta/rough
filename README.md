@@ -17,11 +17,11 @@ npm install --save roughjs
 
 If you are looking for bundled version in different formats, the npm package will have these in the following locations:
 
-CommonJS: `roughjs/dist/rough.cjs.js`
+CommonJS: `roughjs/dist/rough.cjs`
 
-ESM: `roughjs/dist/rough.esm.js`
+ESM: `roughjs/dist/rough.ejs`
 
-Browser IIFE: `roughjs/dist/rough.js`
+Browser IIFE: `roughjs/dist/rough.iife.js`
 
 
 ## Usage
@@ -121,6 +121,7 @@ Algorithm to convert SVG arcs to Canvas [described here](https://www.w3.org/TR/S
 ## License
 [MIT License](https://github.com/pshihn/rough/blob/master/LICENSE) (c) [Preet Shihn](https://twitter.com/preetster)
 
+## Fork
 This project is a fork of https://github.com/rough-stuff/rough by Preet Shihn.
 Significant changes have been made to support TypeScript 6 and simplify bundling
 for npmjs.

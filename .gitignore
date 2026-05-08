@@ -1,8 +1,6 @@
 .cache
 .DS_Store
-node_modules
-z
 bin
 dist
-bundled
 bug.html
+node_modules

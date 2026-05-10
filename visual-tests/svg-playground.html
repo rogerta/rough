@@ -15,14 +15,18 @@ body {
    * Set it to transparent so that the browser itself does not try to
    * render anything itself.  The only important part is the width, which
    * determines the width of the rough border. */
-  border: solid transparent 0.25rem;
+  border-width: 0.25rem;
   padding: 2rem;
   background: yellow;
 
   /* The properties listed after this comment are important for element to
    * have so that the rough border works as expected. */
 
-  /* This is needed so that the svg's abolute position works. */
+   /* This makes sure tha the browser will not draw any visible border when
+    * the border width is other than zero. */
+   border-color: transparent;
+   border-style: solid;
+   /* This is needed so that the svg's abolute position works. */
   position: relative;
   /* It's important that the element box sizing be border-box so that the
    * rough border is re-drawn when the element's border width changes.
@@ -106,6 +110,7 @@ kbd {
 <script type="module">
 import rough from '../src/rough.js';
 
+const element = document.querySelector('#element');
 const svg = document.querySelector('svg');
 const coords = document.querySelectorAll('.coords');
 svg.addEventListener('mousemove', e => {
@@ -149,9 +154,10 @@ cmd.addEventListener('keyup', e => {
 
 const observer = new ResizeObserver(entries => {
   for (let entry of entries) {
-    const { width, height } = entry.contentRect;
+    // const { width, height } = entry.contentRect;
+    const { width, height } = svg.getBoundingClientRect();
     const bwidth =
-        parseFloat(getComputedStyle(entry.target.parentElement).borderWidth);
+        parseFloat(getComputedStyle(entry.target).borderWidth);
     let rect = undefined;
     if (bwidth > 0) {
       const halfbwidth = bwidth / 2;
@@ -163,7 +169,7 @@ const observer = new ResizeObserver(entries => {
     svg.replaceChildren(rect);
   }
 });
-observer.observe(svg);
+observer.observe(element, {box: 'border-box'});
 
 window.addEventListener('load', () => {
   const text = localStorage.getItem('cmd');

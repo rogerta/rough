@@ -1,0 +1,129 @@
+<html>
+
+<head>
+  <title>Rough SVG Playground</title>
+<style>
+body {
+  margin: 0;
+  padding: 1rem;
+}
+
+#element {
+  position: relative;
+  width: 400px;
+  height:300px;
+  box-sizing: border-box;
+  border: solid transparent 1rem;
+  padding: 2rem;
+  background: lightgray;
+}
+
+svg {
+  /* This position places the svg over the padding, but not the border */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: lightgreen;
+  overflow: hidden;
+}
+
+label {
+  display: block;
+  margin-top: 1rem;
+  font-weight: bold;
+}
+textarea {
+  width: 400px;
+}
+
+kbd {
+  background-color: #eeeeee;
+  border-radius: 3px;
+  border: 1px solid #b4b4b4;
+  box-shadow:
+    0 1px 1px rgb(0 0 0 / 0.2),
+    0 2px 0 0 rgb(255 255 255 / 0.7) inset;
+  color: #333333;
+  display: inline-block;
+  font-size: 0.85em;
+  font-weight: bold;
+  line-height: 1;
+  padding: 2px 4px;
+  white-space: nowrap;
+}
+</style>
+</head>
+
+<body>
+<h1>Rough SVG Playground</h1>
+
+<div id="element">
+  <!-- By not setting a viewBox on the SVG, it essentially becomes the CSS
+       bounding box.  Setting the overflow to visible would still allow
+       sub-elements to be visible outside this "viewBox".  This might be
+       interesting so that the rough border are actually drawn in the CSS
+       border area.  However, right now it's hard to predict the width of
+       the rough border since it depends on some settings like roughness and
+       bowing and also on random values.
+  -->
+  <svg></svg>
+</div>
+
+<label for="cmd">Command</label>
+<textarea id="cmd" autocorrect="off" rows="10"></textarea>
+<div id="coords">&nbsp;</div>
+<div>
+  Use <code>r.xxx(args)</code> where <code>xxx</code> is valid RoughSVG method.
+  Press <kbd>Ctrl</kbd>+<kbd>Enter</kbd> to execute the line on which the cursor is located.
+</div>
+
+<script type="module">
+import rough from '../src/rough.js';
+
+const svg = document.querySelector('svg');
+const coords = document.querySelector('#coords');
+svg.addEventListener('mousemove', e => {
+  coords.innerText = `x=${e.layerX} y=${e.layerY}`
+});
+svg.addEventListener('mouseleave', e => {
+  coords.innerHTML = '&nbsp;'
+});
+
+const r = rough.svg(svg);
+
+const cmd = document.querySelector('#cmd');
+cmd.addEventListener('keyup', e => {
+  if (e.key === 'Enter' && e.ctrlKey) {
+    const text = e.target.value;
+    const pos = e.target.selectionStart;
+    const start = text.lastIndexOf('\n', pos - 1) + 1;
+    let end = text.indexOf('\n', pos);
+    if (end === -1) {
+      end = text.length;
+    }
+
+    const cmd = text.substring(start, end);
+    const ret = eval(cmd);
+    if (ret instanceof SVGElement) {
+      svg.append(ret);
+    }
+  }
+});
+
+// const observer = new ResizeObserver(entries => {
+//   for (let entry of entries) {
+//     const { width, height } = entry.contentRect;
+//     const line = r.line(10, 10, width - 20, 10);
+//     svg.replaceChildren(line);
+//   }
+// });
+// observer.observe(svg);
+
+</script>
+
+</body>
+
+</html>
+

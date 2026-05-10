@@ -13,20 +13,28 @@ body {
   width: 400px;
   height:300px;
   box-sizing: border-box;
-  border: solid transparent 1rem;
+  /* The border of the element will contain the rough rectangle border.
+   * Set it to transparent so that the browser itself does not try to
+   * render anything itself */
+  border: solid transparent 0.25rem;
   padding: 2rem;
-  background: lightgray;
+  background: yellow;
 }
 
 svg {
-  /* This position places the svg over the padding, but not the border */
+  /* This position places the svg over the padding, but not over the border.
+   * It could be made to be over the border too by using a top/left equal to
+   * minus the border width and a width/height that takes into account the
+   * borders. */
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   background: lightgreen;
-  overflow: hidden;
+  /* Set to visible so that SVG elements can draw into the border area.  As
+   * currently positioned, the bounds of the SVG do not cover the border. */
+  overflow: visible;
 }
 
 label {
@@ -59,6 +67,7 @@ kbd {
 <body>
 <h1>Rough SVG Playground</h1>
 
+<div class="coords">&nbsp;</div>
 <div id="element">
   <!-- By not setting a viewBox on the SVG, it essentially becomes the CSS
        bounding box.  Setting the overflow to visible would still allow
@@ -70,10 +79,10 @@ kbd {
   -->
   <svg></svg>
 </div>
+<div class="coords">&nbsp;</div>
 
 <label for="cmd">Command</label>
 <textarea id="cmd" autocorrect="off" rows="10"></textarea>
-<div id="coords">&nbsp;</div>
 <div>
   Use <code>r.xxx(args)</code> where <code>xxx</code> is valid RoughSVG method.
   Press <kbd>Ctrl</kbd>+<kbd>Enter</kbd> to execute the line on which the cursor is located.
@@ -83,9 +92,9 @@ kbd {
 import rough from '../src/rough.js';
 
 const svg = document.querySelector('svg');
-const coords = document.querySelector('#coords');
+const coords = document.querySelectorAll('.coords');
 svg.addEventListener('mousemove', e => {
-  coords.innerText = `x=${e.layerX} y=${e.layerY}`
+  coords.forEach(c => c.innerText = `x=${e.layerX} y=${e.layerY}`);
 });
 svg.addEventListener('mouseleave', e => {
   coords.innerHTML = '&nbsp;'
@@ -97,6 +106,8 @@ const cmd = document.querySelector('#cmd');
 cmd.addEventListener('keyup', e => {
   if (e.key === 'Enter' && e.ctrlKey) {
     const text = e.target.value;
+    localStorage.setItem('cmd', text);
+
     const pos = e.target.selectionStart;
     const start = text.lastIndexOf('\n', pos - 1) + 1;
     let end = text.indexOf('\n', pos);
@@ -105,6 +116,15 @@ cmd.addEventListener('keyup', e => {
     }
 
     const cmd = text.substring(start, end);
+    if (cmd.startsWith('.')) {
+      switch (cmd) {
+        case '.clear':
+          svg.replaceChildren();
+          break;
+      }
+      return;
+    }
+
     const ret = eval(cmd);
     if (ret instanceof SVGElement) {
       svg.append(ret);
@@ -112,15 +132,25 @@ cmd.addEventListener('keyup', e => {
   }
 });
 
-// const observer = new ResizeObserver(entries => {
-//   for (let entry of entries) {
-//     const { width, height } = entry.contentRect;
-//     const line = r.line(10, 10, width - 20, 10);
-//     svg.replaceChildren(line);
-//   }
-// });
-// observer.observe(svg);
+const observer = new ResizeObserver(entries => {
+  for (let entry of entries) {
+    const { width, height } = entry.contentRect;
+    const bwidth =
+        parseFloat(getComputedStyle(entry.target.parentElement).borderWidth);
+    const halfbwidth = bwidth / 2;
+    const rect = r.rectangle(-halfbwidth, -halfbwidth, width + bwidth, height + bwidth,
+      {maxRandomnessOffset: halfbwidth});
+    svg.replaceChildren(rect);
+  }
+});
+observer.observe(svg);
 
+window.addEventListener('load', () => {
+  const text = localStorage.getItem('cmd');
+  if (text) {
+    cmd.value = text;
+  }
+});
 </script>
 
 </body>

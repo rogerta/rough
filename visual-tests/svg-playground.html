@@ -137,9 +137,14 @@ const observer = new ResizeObserver(entries => {
     const { width, height } = entry.contentRect;
     const bwidth =
         parseFloat(getComputedStyle(entry.target.parentElement).borderWidth);
-    const halfbwidth = bwidth / 2;
-    const rect = r.rectangle(-halfbwidth, -halfbwidth, width + bwidth, height + bwidth,
-      {maxRandomnessOffset: halfbwidth});
+    let rect = undefined;
+    if (bwidth > 0) {
+      const halfbwidth = bwidth / 2;
+      rect = r.rectangle(
+          -halfbwidth, -halfbwidth,
+          width + bwidth, height + bwidth,
+          { maxRandomnessOffset: halfbwidth });
+    }
     svg.replaceChildren(rect);
   }
 });

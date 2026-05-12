@@ -241,19 +241,19 @@ export function patternFillArc(x: number, y: number, width: number, height: numb
   return patternFillPolygons([points], o);
 }
 
-export function randOffset(x: number, o: ResolvedOptions): number {
+// Private helpers
+
+function randOffset(x: number, o: ResolvedOptions): number {
   return _offsetOpt(x, o);
 }
 
-export function randOffsetWithRange(min: number, max: number, o: ResolvedOptions): number {
+function randOffsetWithRange(min: number, max: number, o: ResolvedOptions): number {
   return _offset(min, max, o);
 }
 
-export function doubleLineFillOps(x1: number, y1: number, x2: number, y2: number, o: ResolvedOptions): Op[] {
+function doubleLineFillOps(x1: number, y1: number, x2: number, y2: number, o: ResolvedOptions): Op[] {
   return _doubleLine(x1, y1, x2, y2, o, true);
 }
-
-// Private helpers
 
 function cloneOptionsAlterSeed(ops: ResolvedOptions): ResolvedOptions {
   const result: ResolvedOptions = { ...ops };

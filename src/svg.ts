@@ -37,6 +37,10 @@ export class RoughSVG {
         case 'path': {
           path = doc.createElementNS(SVGNS, 'path');
           path.setAttribute('d', this.opsToPath(drawing, precision));
+          path.classList.add('outline');
+
+          // The following are presentation attributes which can be overridden
+          // with CSS.
           path.setAttribute('stroke', o.stroke);
           path.setAttribute('stroke-width', o.strokeWidth + '');
           path.setAttribute('fill', 'none');
@@ -51,6 +55,10 @@ export class RoughSVG {
         case 'fillPath': {
           path = doc.createElementNS(SVGNS, 'path');
           path.setAttribute('d', this.opsToPath(drawing, precision));
+          path.classList.add('solid-fill');
+
+          // The following are presentation attributes which can be overridden
+          // with CSS.
           path.setAttribute('stroke', 'none');
           path.setAttribute('stroke-width', '0');
           path.setAttribute('fill', o.fill);
@@ -78,6 +86,10 @@ export class RoughSVG {
     }
     const path = doc.createElementNS(SVGNS, 'path');
     path.setAttribute('d', this.opsToPath(drawing, o.fixedDecimalPlaceDigits));
+    path.classList.add('pattern-fill');
+
+    // The following are presentation attributes which can be overridden
+    // with CSS.
     path.setAttribute('stroke', o.fill);
     path.setAttribute('stroke-width', fweight + '');
     path.setAttribute('fill', 'none');

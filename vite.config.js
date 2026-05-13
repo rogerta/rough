@@ -10,5 +10,10 @@ export default defineConfig({
     },
     minify: 'oxc'
   },
+  server: {
+    host: '0.0.0.0',
+    port: 9515,
+    allowedHosts: ['photoace.tawacentral.net'],
+  },
 })
 

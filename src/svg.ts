@@ -30,6 +30,7 @@ export class RoughSVG {
     const o = drawable.options || this.getDefaultOptions();
     const doc = this.svg.ownerDocument || window.document;
     const g = doc.createElementNS(SVGNS, 'g');
+    g.classList.add(drawable.shape);
     const precision = drawable.options.fixedDecimalPlaceDigits;
     for (const drawing of sets) {
       let path = null;

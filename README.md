@@ -113,8 +113,6 @@ SVG Path with simplification:
 ## Examples
 ![Rough.js US map](https://roughjs.com/images/m6.png)
 
-[View examples here](https://github.com/pshihn/rough/wiki/Examples)
-
 ## API & Documentation
 [Full Rough.js API](https://github.com/pshihn/rough/wiki)
 
@@ -124,7 +122,7 @@ Some of the core algorithms were adapted from [handy](https://www.gicentre.net/s
 Algorithm to convert SVG arcs to Canvas [described here](https://www.w3.org/TR/SVG/implnote.html) was adapted from [Mozilla codebase](https://hg.mozilla.org/mozilla-central/file/17156fbebbc8/content/svg/content/src/nsSVGPathDataParser.cpp#l887)
 
 ## License
-[MIT License](https://github.com/pshihn/rough/blob/master/LICENSE) (c) [Preet Shihn](https://twitter.com/preetster)
+[MIT License](https://github.com/rogerta/rough/blob/master/LICENSE) (c) Roger Tawa
 
 ## Fork
 This project is a fork of https://github.com/rough-stuff/rough by Preet Shihn.

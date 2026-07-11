@@ -3,6 +3,12 @@ import { RoughCanvas } from './canvas';
 import { RoughGenerator } from './generator';
 import { RoughSVG } from './svg';
 
+export * from './core'
+export type * from './geometry'
+export { RoughCanvas } from './canvas';
+export { RoughGenerator } from './generator';
+export { RoughSVG } from './svg';
+
 /**
  * Creates a RoughCanvas instance for drawing on an HTML canvas.
  * @param canvas The HTMLCanvasElement to draw on.

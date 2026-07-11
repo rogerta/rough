@@ -7,37 +7,40 @@ Rough.js works with both [Canvas](https://developer.mozilla.org/en-US/docs/Web/A
 ![Rough.js sample](https://roughjs.com/images/cap_demo.png)
 
 ## Install
+Using npm:
 
 ```
-npm install --save @rogerta/roughjs
+npx jsr add @rough/roughjs
 ```
+
+Or get the latest using: https://esm.sh/jsr/@rough/roughjs
 
 ## Import
 
 ### Importing into ESM modules (including Typescript)
 ```js
-import { canvas, svg } from '@rough/roughjs';
+import * as rough from '@rough/roughjs';
 ```
 
 ### Importing the library in Modern Webpages
 ```html
   <script type="module">
-    import { canvas, svg } from './server/path/to/rough.js';
+    import * as rough from './server/path/to/rough.js';
     ...
   </script>
 ```
 
 ## Canvas Usage
 ```js
-const canvalEl = document.getElementById('canvas');  // HTMLCanvasElement.
-const rc = canvas(canvalEl);
+const canvas = document.getElementById('canvas');  // HTMLCanvasElement.
+const rc = rough.canvas(canvas);
 rc.rectangle(10, 10, 200, 200);
 ```
 
 ## SVG Usage
 ```js
-const svgEl = document.getElementById('svg');  // SVGSVGElement.
-const rc = svg(svgEl);
+const svg = document.getElementById('svg');  // SVGSVGElement.
+const rc = rough.svg(svg);
 svg.appendChild(rc.rectangle(10, 10, 200, 200));
 ```
 

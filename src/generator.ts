@@ -13,6 +13,7 @@ const NOS = 'none';
  * These drawable objects can then be drawn using a RoughCanvas or RoughSVG instance.
  */
 export class RoughGenerator {
+  /** @ignore */
   private config: Config;
 
   /**
@@ -67,10 +68,12 @@ export class RoughGenerator {
     return randomSeed();
   }
 
+  /** @ignore */
   private _o(options?: Options): ResolvedOptions {
     return options ? Object.assign({}, this.defaultOptions, options) : this.defaultOptions;
   }
 
+  /** @ignore */
   private _d(shape: string, sets: OpSet[], options: ResolvedOptions): Drawable {
     return { shape, sets: sets || [], options: options || this.defaultOptions };
   }
@@ -388,6 +391,7 @@ export class RoughGenerator {
     return paths;
   }
 
+  /** @ignore */
   private fillSketch(drawing: OpSet, o: ResolvedOptions): PathInfo {
     let fweight = o.fillWeight;
     if (fweight < 0) {
@@ -401,6 +405,7 @@ export class RoughGenerator {
     };
   }
 
+  /** @ignore */
   private _mergedShape(input: Op[]): Op[] {
     return input.filter((d, i) => {
       if (i === 0) {

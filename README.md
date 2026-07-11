@@ -114,7 +114,7 @@ SVG Path with simplification:
 ![Rough.js US map](https://roughjs.com/images/m6.png)
 
 ## API & Documentation
-[Full Rough.js API](https://github.com/pshihn/rough/wiki)
+[Full Rough.js API](https://jsr.io/@rough/roughjs/doc)
 
 ## Credits
 Some of the core algorithms were adapted from [handy](https://www.gicentre.net/software/#/handy/) processing lib.

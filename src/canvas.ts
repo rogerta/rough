@@ -6,8 +6,11 @@ import type { Point } from './geometry';
  * The RoughCanvas class is used to draw hand-drawn, sketchy shapes on an HTML canvas.
  */
 export class RoughCanvas {
+  /** @ignore */
   private gen: RoughGenerator;
+  /** @ignore */
   private canvas: HTMLCanvasElement;
+  /** @ignore */
   private ctx: CanvasRenderingContext2D;
 
   /**
@@ -60,6 +63,7 @@ export class RoughCanvas {
     }
   }
 
+  /** @ignore */
   private fillSketch(ctx: CanvasRenderingContext2D, drawing: OpSet, o: ResolvedOptions) {
     let fweight = o.fillWeight;
     if (fweight < 0) {
@@ -78,6 +82,7 @@ export class RoughCanvas {
     ctx.restore();
   }
 
+  /** @ignore */
   private _drawToContext(ctx: CanvasRenderingContext2D, drawing: OpSet, fixedDecimals: number, rule: CanvasFillRule = 'nonzero') {
     ctx.beginPath();
     for (const item of drawing.ops) {

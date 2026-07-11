@@ -7,7 +7,9 @@ import type { Point } from './geometry';
  * The RoughSVG class is used to draw hand-drawn, sketchy shapes as SVG elements.
  */
 export class RoughSVG {
+  /** @ignore */
   private gen: RoughGenerator;
+  /** @ignore */
   private svg: SVGSVGElement;
 
   /**
@@ -80,6 +82,7 @@ export class RoughSVG {
     return g;
   }
 
+  /** @ignore */
   private fillSketch(doc: Document, drawing: OpSet, o: ResolvedOptions): SVGPathElement {
     let fweight = o.fillWeight;
     if (fweight < 0) {

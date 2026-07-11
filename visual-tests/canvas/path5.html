@@ -11,7 +11,7 @@
   <demo-canvas></demo-canvas>
 
   <script type="module">
-    import rough from '../../dist/rough.js';
+    import { canvas as roughCanvas } from '../../dist/rough.js';
 
     const samples = [
       'M400 100 h 90 v 90 h -90z',
@@ -81,7 +81,7 @@
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.fillStyle = 'white';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
-        const rc = rough.canvas(canvas);
+        const rc = roughCanvas(canvas);
         rc.path(path, {
           fill: 'orange',
           fillWeight: 5,

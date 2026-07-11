@@ -13,9 +13,9 @@
   <input type="range" style="width: 100%; display: block; box-sizing: border-box;" min="0" max="800">
 
   <script type="module">
-    import rough from '../../dist/rough.js';
+    import { canvas as roughCanvas } from '../../dist/rough.js';
     const canvas = document.querySelector('canvas');
-    const rc = rough.canvas(canvas);
+    const rc = roughCanvas(canvas);
     const ctx = rc.ctx;
     const input = document.querySelector('input');
 

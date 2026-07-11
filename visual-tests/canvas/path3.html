@@ -11,9 +11,9 @@
   <canvas width="800" height="800"></canvas>
 
   <script type="module">
-    import rough from '../../dist/rough.js';
+    import { canvas as roughCanvas } from '../../dist/rough.js';
     const canvas = document.querySelector('canvas');
-    const rc = rough.canvas(canvas);
+    const rc = roughCanvas(canvas);
 
     const roughness = 2;
 

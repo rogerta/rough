@@ -16,38 +16,28 @@ npm install --save @rogerta/roughjs
 
 ### Importing into ESM modules (including Typescript)
 ```js
-import rough from '@rogerta/roughjs';
-```
-
-### Importing into CommonJS modules
-```js
-const rough = require('@rogerta/roughjs');
-```
-
-### Importing into Webpages
-```html
-<script src="/server/path/to/rough.iife.js"></script>
+import { canvas, svg } from '@rough/roughjs';
 ```
 
 ### Importing the library in Modern Webpages
 ```html
   <script type="module">
-    import rough from './server/path/to/rough.mjs';
+    import { canvas, svg } from './server/path/to/rough.js';
     ...
   </script>
 ```
 
 ## Canvas Usage
 ```js
-const canvas = document.getElementById('canvas');  // HTMLCanvasElement.
-const rc = rough.canvas(canvas);
+const canvalEl = document.getElementById('canvas');  // HTMLCanvasElement.
+const rc = canvas(canvalEl);
 rc.rectangle(10, 10, 200, 200);
 ```
 
 ## SVG Usage
 ```js
-const svg = document.getElementById('svg');  // SVGSVGElement.
-const rc = rough.svg(svg);
+const svgEl = document.getElementById('svg');  // SVGSVGElement.
+const rc = svg(svgEl);
 svg.appendChild(rc.rectangle(10, 10, 200, 200));
 ```
 
@@ -136,4 +126,4 @@ Algorithm to convert SVG arcs to Canvas [described here](https://www.w3.org/TR/S
 ## Fork
 This project is a fork of https://github.com/rough-stuff/rough by Preet Shihn.
 Significant changes have been made to support TypeScript 6 and simplify bundling
-for npmjs.
+for npmjs and jsr.io.

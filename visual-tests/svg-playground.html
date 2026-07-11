@@ -108,19 +108,19 @@ kbd {
 </div>
 
 <script type="module">
-import rough from '../src/rough.js';
+import { svg } from '../src/rough.js';
 
 const element = document.querySelector('#element');
-const svg = document.querySelector('svg');
+const svgel = document.querySelector('svg');
 const coords = document.querySelectorAll('.coords');
-svg.addEventListener('mousemove', e => {
+svgel.addEventListener('mousemove', e => {
   coords.forEach(c => c.innerText = `x=${e.layerX} y=${e.layerY}`);
 });
-svg.addEventListener('mouseleave', e => {
+svgel.addEventListener('mouseleave', e => {
   coords.innerHTML = '&nbsp;'
 });
 
-const r = rough.svg(svg);
+const r = svg(svgel);
 
 const cmd = document.querySelector('#cmd');
 cmd.addEventListener('keyup', e => {
@@ -139,7 +139,7 @@ cmd.addEventListener('keyup', e => {
     if (cmd.startsWith('.')) {
       switch (cmd) {
         case '.clear':
-          svg.replaceChildren();
+          svgel.replaceChildren();
           break;
       }
       return;
@@ -147,7 +147,7 @@ cmd.addEventListener('keyup', e => {
 
     const ret = eval(cmd);
     if (ret instanceof SVGElement) {
-      svg.append(ret);
+      svgel.append(ret);
     }
   }
 });
@@ -155,7 +155,7 @@ cmd.addEventListener('keyup', e => {
 const observer = new ResizeObserver(entries => {
   for (let entry of entries) {
     // const { width, height } = entry.contentRect;
-    const { width, height } = svg.getBoundingClientRect();
+    const { width, height } = svgel.getBoundingClientRect();
     const bwidth =
         parseFloat(getComputedStyle(entry.target).borderWidth);
     let rect = undefined;
@@ -166,7 +166,7 @@ const observer = new ResizeObserver(entries => {
           width + bwidth, height + bwidth,
           { maxRandomnessOffset: halfbwidth });
     }
-    svg.replaceChildren(rect);
+    svgel.replaceChildren(rect);
   }
 });
 observer.observe(element, {box: 'border-box'});

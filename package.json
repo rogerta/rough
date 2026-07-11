@@ -42,11 +42,13 @@
   "bugs": {
     "url": "https://github.com/rogerta/rough/issues"
   },
-  "devDependencies": {
+  "dependencies": {
     "hachure-fill": "^0.5.2",
     "path-data-parser": "^0.1.0",
     "points-on-curve": "^0.2.0",
-    "points-on-path": "^0.2.1",
+    "points-on-path": "^0.2.1"
+  },
+  "devDependencies": {
     "typescript": "6.0.3",
     "vite": "^8.0.11"
   }

@@ -1,10 +1,11 @@
 {
   "name": "@rogerta/roughjs",
   "description": "Create graphics using HTML Canvas or SVG with a hand-drawn, sketchy, appearance.",
-  "version": "6.0.0",
-
+  "version": "6.0.1",
   "type": "module",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "main": "./dist/rough.umd.cjs",
   "module": "./dist/rough.js",
   "exports": {
@@ -13,7 +14,6 @@
       "require": "./dist/rough.umd.cjs"
     }
   },
-
   "scripts": {
     "build": "vite build && tsc",
     "dev": "vite",

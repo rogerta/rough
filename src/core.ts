@@ -166,19 +166,37 @@ export declare type OpType = 'move' | 'bcurveTo' | 'lineTo';
 export declare type OpSetType = 'path' | 'fillPath' | 'fillSketch';
 
 /**
- * A single drawing operation.
+ * A single drawing operation.  When used inside of an `OpSet`, each operation
+ * is relative to the previous operation.
  */
 export interface Op {
+  /** The type of relative operation. */
   op: OpType;
+
+  /**
+   * Data specific to the operation.  This is usually a set of coordinates
+   * or parameters.
+   */
   data: number[];
 }
 
 /**
- * A set of drawing operations representing a part of a shape (e.g., outline or fill).
+ * A set of drawing operations representing a part of a shape (e.g., outline or
+ * fill).
  */
 export interface OpSet {
+  /**
+   * Whether this `OpSet` represents an outline (type `path`) or a fill (types
+   * `fillPath` or `fillSketch`).  `fillPath` is used for a solid fill whereas
+   * `fillSketch` is used for patterned fill like hachure, zigzag, etc.
+   */
   type: OpSetType;
+
+  /**
+   * The drawing operations that fully describe the part.
+   */
   ops: Op[];
+
   size?: Point;
   path?: string;
 }
@@ -187,8 +205,22 @@ export interface OpSet {
  * A drawable object containing the instructions and options for a shape.
  */
 export interface Drawable {
+  /**
+   * The basic primtive shape of the drawable.  Can be: `line`, `rectangle`,
+   * `ellipse`, `circle`, `linearPath`, `arc`, `curve`, `polugon`, or `path`.
+   */
   shape: string;
+
+  /**
+   * Options that should be used when rendering to a canvas or SVG element.
+   */
   options: ResolvedOptions;
+
+  /**
+   * An array of `OpSet` objects that describe the fill and/or outline of the
+   * shape.  If the Drawable is both filled and outlined, the `OpSet`s
+   * representing the fill appear before the `OpSet`s representing the outline.
+   */
   sets: OpSet[];
 }
 

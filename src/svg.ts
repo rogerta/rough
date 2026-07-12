@@ -4,7 +4,22 @@ import { RoughGenerator } from './generator';
 import type { Point } from './geometry';
 
 /**
- * The RoughSVG class is used to draw hand-drawn, sketchy shapes as SVG elements.
+ * `RoughSVG` creates SVG elements that can be placed within an `<svg>` to
+ * render rough shapes.
+ *
+ * Each of the basic shape drawing methods (line, rectangle, circle, etc)
+ * returns tree of SVG elements that represent the shape.  The root of the tree
+ * is a `<g>` element whose class list contains the name of the shape.  For
+ * example, when `line()` is called, the root of the returned SVG tree is the
+ * element `<g class="line">`.
+ *
+ * The root contains up to two `<path>` elements, one each for the outline and
+ * the fill.  If both are present, the fill preceeds the outline.  The outline
+ * path's class list contains the class 'outline'.  The fill path's class list
+ * contains the class `solid-fill` for shapes created with the option
+ * `fillStyle===solid` or `pattern-fill` for the other fill styles (see
+ * `Options` interface for more details).  These classes can be used to better
+ * target CSS presentation properties of the SVG elements.
  */
 export class RoughSVG {
   /** @ignore */
@@ -48,7 +63,8 @@ export class RoughSVG {
           path.setAttribute('stroke-width', o.strokeWidth + '');
           path.setAttribute('fill', 'none');
           if (o.strokeLineDash.length > 0) {
-            path.setAttribute('stroke-dasharray', o.strokeLineDash.join(' ').trim());
+            path.setAttribute('stroke-dasharray',
+                o.strokeLineDash.join(' ').trim());
           }
           if (o.strokeLineDashOffset) {
             path.setAttribute('stroke-dashoffset', `${o.strokeLineDashOffset}`);
@@ -83,7 +99,10 @@ export class RoughSVG {
   }
 
   /** @ignore */
-  private fillSketch(doc: Document, drawing: OpSet, o: ResolvedOptions): SVGPathElement {
+  private fillSketch(
+      doc: Document,
+      drawing: OpSet,
+      o: ResolvedOptions): SVGPathElement {
     let fweight = o.fillWeight;
     if (fweight < 0) {
       fweight = o.strokeWidth / 2;
@@ -139,7 +158,12 @@ export class RoughSVG {
    * @param options Optional overrides for the drawing options.
    * @returns An SVGGElement containing the line.
    */
-  line(x1: number, y1: number, x2: number, y2: number, options?: Options): SVGGElement {
+  line(
+      x1: number,
+      y1: number,
+      x2: number,
+      y2: number,
+      options?: Options): SVGGElement {
     const d = this.gen.line(x1, y1, x2, y2, options);
     return this.draw(d);
   }
@@ -153,7 +177,12 @@ export class RoughSVG {
    * @param options Optional overrides for the drawing options.
    * @returns An SVGGElement containing the rectangle.
    */
-  rectangle(x: number, y: number, width: number, height: number, options?: Options): SVGGElement {
+  rectangle(
+      x: number,
+      y: number,
+      width: number,
+      height: number,
+      options?: Options): SVGGElement {
     const d = this.gen.rectangle(x, y, width, height, options);
     return this.draw(d);
   }
@@ -167,7 +196,12 @@ export class RoughSVG {
    * @param options Optional overrides for the drawing options.
    * @returns An SVGGElement containing the ellipse.
    */
-  ellipse(x: number, y: number, width: number, height: number, options?: Options): SVGGElement {
+  ellipse(
+      x: number,
+      y: number,
+      width: number,
+      height: number,
+      options?: Options): SVGGElement {
     const d = this.gen.ellipse(x, y, width, height, options);
     return this.draw(d);
   }
@@ -180,7 +214,11 @@ export class RoughSVG {
    * @param options Optional overrides for the drawing options.
    * @returns An SVGGElement containing the circle.
    */
-  circle(x: number, y: number, diameter: number, options?: Options): SVGGElement {
+  circle(
+      x: number,
+      y: number,
+      diameter: number,
+      options?: Options): SVGGElement {
     const d = this.gen.circle(x, y, diameter, options);
     return this.draw(d);
   }
@@ -215,18 +253,28 @@ export class RoughSVG {
    * @param height The height of the arc.
    * @param start The start angle in radians.
    * @param stop The stop angle in radians.
-   * @param closed If true, the arc will be closed (pie slice). Defaults to false.
+   * @param closed If true, the arc will be closed (pie slice). Defaults to
+   *    false.
    * @param options Optional overrides for the drawing options.
    * @returns An SVGGElement containing the arc.
    */
-  arc(x: number, y: number, width: number, height: number, start: number, stop: number, closed: boolean = false, options?: Options): SVGGElement {
+  arc(
+      x: number,
+      y: number,
+      width: number,
+      height: number,
+      start: number,
+      stop: number,
+      closed: boolean = false,
+      options?: Options): SVGGElement {
     const d = this.gen.arc(x, y, width, height, start, stop, closed, options);
     return this.draw(d);
   }
 
   /**
    * Draws a curve as an SVG element.
-   * @param points An array of points or an array of arrays of points (for multiple paths) representing the curve.
+   * @param points An array of points or an array of arrays of points (for
+   *    multiple paths) representing the curve.
    * @param options Optional overrides for the drawing options.
    * @returns An SVGGElement containing the curve.
    */

@@ -1,3 +1,21 @@
+/**
+ * `RoughGenerator` uses the low level functions in `renderer.ts` to create
+ * `Drawable` objects which are rough representations of basic shapes such as
+ * lines, rectangles, circles, and such.
+ *
+ * A `Drawable` contains an array of `OpSet` objects that describe the fill
+ * and/or outline of the shape.  If the Drawable is both filled and outlined,
+ * the `OpSet`s representing the fill appear before the `OpSet`s representing
+ * the outline.  Generally `Drawable`s are passed to either `RoughCanvas` or
+ * `RoughSVG` to render the shape onto the respective surface.
+ *
+ * This module does not depend on the browser contaxt and may be used in
+ * server-side envrionments such as Node.js, Deno, Bun, etc.  This module is
+ * private to the roughjs pacjage.
+ *
+ * @module
+ */
+
 import type { Config, Options, Drawable, OpSet, Op, ResolvedOptions, PathInfo } from './core.js';
 import type { Point } from './geometry.js';
 import { line, solidFillPolygon, patternFillPolygons, rectangle, ellipseWithParams, generateEllipseParams, linearPath, arc, patternFillArc, curve, svgPath } from './renderer.js';
@@ -9,8 +27,8 @@ import { pointsOnPath } from 'points-on-path';
 const NOS = 'none';
 
 /**
- * The RoughGenerator class is used to generate drawable objects (shapes) without drawing them to a canvas or SVG.
- * These drawable objects can then be drawn using a RoughCanvas or RoughSVG instance.
+ * `Create `Drawable` objects which are rough representations of basic shapes
+ * such as lines, rectangles, circles, and such.
  */
 export class RoughGenerator {
   /** @ignore */

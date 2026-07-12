@@ -13,7 +13,7 @@ Using npm:
 npx jsr add @rough/roughjs
 ```
 
-Or get the latest using: https://esm.sh/jsr/@rough/roughjs
+Or get the latest from the CDN using: https://esm.sh/jsr/@rough/roughjs
 
 ## Import
 

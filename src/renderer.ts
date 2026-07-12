@@ -1,3 +1,18 @@
+/**
+ * This module contains functions to create rough representations of basic
+ * drawing primitives such as lines, rectangles, circles, and such.
+ *
+ * Each function returns an `OpSet` object that contains the details of the
+ * rough representation.  Generally the `OpSet`s are passed to `RoughGenerator`
+ * to be converted into `Drawable`s.
+ *
+ * This module does not depend on the browser contaxt and may be used in
+ * server-side envrionments such as Node.js, Deno, Bun, etc.  This module is
+ * private to the roughjs pacjage.
+ *
+ * @module
+ */
+
 import type { ResolvedOptions, Op, OpSet } from './core.js';
 import type { Point } from './geometry.js';
 import { getFiller } from './fillers/filler.js';

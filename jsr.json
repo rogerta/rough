@@ -1,6 +1,6 @@
 {
   "name": "@rough/roughjs",
-  "version": "6.0.4",
+  "version": "6.0.5",
   "license": "MIT",
   "exports": "./src/rough.ts"
 }

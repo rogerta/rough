@@ -9,7 +9,7 @@ export type Point = [number, number];
 export type Line = [Point, Point];
 
 /**
- * Interface for a rectangle.
+ * A rectangle represented by its top left corner and width and height.
  */
 export interface Rectangle {
   x: number;

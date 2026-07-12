@@ -44,6 +44,16 @@ const rc = rough.svg(svg);
 svg.appendChild(rc.rectangle(10, 10, 200, 200));
 ```
 
+## Server-side Usage
+Server-side code cannot call `rough.svg()` or `rough.canvas()` since those methods depend on browser APIs.  Use `RoughGenerator` to create rough shapes in a portable format that can be strigified and parsed.
+
+```js
+const rc = rough.generator();
+const drawable = rc.rectangle(10, 10, 200, 200);
+const str = JSON.stringify(drawable);
+```
+
+
 ## Shapes
 
 ### Rectangles

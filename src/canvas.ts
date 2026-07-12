@@ -3,7 +3,8 @@ import { RoughGenerator } from './generator';
 import type { Point } from './geometry';
 
 /**
- * The RoughCanvas class is used to draw hand-drawn, sketchy shapes on an HTML canvas.
+ * The RoughCanvas class is used to draw hand-drawn, sketchy shapes on an
+ * HTML canvas.
  */
 export class RoughCanvas {
   /** @ignore */

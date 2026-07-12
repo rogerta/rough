@@ -1,28 +1,22 @@
 import type { Point } from './geometry';
 import { Random } from './math';
 
+/** @ignore */
 export const SVGNS = 'http://www.w3.org/2000/svg';
 
 /**
- * Configuration for Rough.js instances.
+ * Configuration object used when creating `RoughCanvas`, `RoughSVG`, and
+ * `RoughGenerator` instances.
  */
 export interface Config {
   /**
-   * Default options to be used by the Rough.js instance.
+   * Default options to be used by the roughjs instance.
    */
   options?: Options;
 }
 
 /**
- * Interface for a drawing surface (Canvas or SVG).
- */
-export interface DrawingSurface {
-  width: number | SVGAnimatedLength;
-  height: number | SVGAnimatedLength;
-}
-
-/**
- * Options for drawing shapes.
+ * Options for controlling the generation and rendering of shapes.
  */
 export interface Options {
   /////////////////////////////////////////////////////////////////////////////
@@ -60,7 +54,7 @@ export interface Options {
    */
   zigzagOffset?: number;
   /**
-   * Random seed for reproducible drawings.
+   * Seed for reproducible drawings.
    */
   seed?: number;
   /**
@@ -162,16 +156,13 @@ export interface ResolvedOptions extends Required<Options> {
   randomizer?: Random;
 }
 
-export declare type OpType = 'move' | 'bcurveTo' | 'lineTo';
-export declare type OpSetType = 'path' | 'fillPath' | 'fillSketch';
-
 /**
  * A single drawing operation.  When used inside of an `OpSet`, each operation
  * is relative to the previous operation.
  */
 export interface Op {
   /** The type of relative operation. */
-  op: OpType;
+  op: 'move' | 'bcurveTo' | 'lineTo';
 
   /**
    * Data specific to the operation.  This is usually a set of coordinates
@@ -190,7 +181,7 @@ export interface OpSet {
    * `fillPath` or `fillSketch`).  `fillPath` is used for a solid fill whereas
    * `fillSketch` is used for patterned fill like hachure, zigzag, etc.
    */
-  type: OpSetType;
+  type: 'path' | 'fillPath' | 'fillSketch';
 
   /**
    * The drawing operations that fully describe the part.
@@ -201,8 +192,12 @@ export interface OpSet {
   path?: string;
 }
 
+/**
+ * A string describing the shape of a `Drawable` object.
+ */
 export type DrawableShape = 'line' | 'rectangle' | 'ellipse' | 'circle' |
     'linearPath' | 'arc' | 'curve' | 'polygon' | 'path'
+
 /**
  * A drawable object containing the instructions and options for a shape.
  */

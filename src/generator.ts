@@ -16,7 +16,7 @@
  * @module
  */
 
-import type { Config, Options, Drawable, OpSet, Op, ResolvedOptions, PathInfo } from './core.js';
+import type { Config, Options, Drawable, DrawableShape, OpSet, Op, ResolvedOptions, PathInfo } from './core.js';
 import type { Point } from './geometry.js';
 import { line, solidFillPolygon, patternFillPolygons, rectangle, ellipseWithParams, generateEllipseParams, linearPath, arc, patternFillArc, curve, svgPath } from './renderer.js';
 import { randomSeed } from './math.js';
@@ -92,7 +92,7 @@ export class RoughGenerator {
   }
 
   /** @ignore */
-  private _d(shape: string, sets: OpSet[], options: ResolvedOptions): Drawable {
+  private _d(shape: DrawableShape, sets: OpSet[], options: ResolvedOptions): Drawable {
     return { shape, sets: sets || [], options: options || this.defaultOptions };
   }
 

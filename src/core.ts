@@ -201,15 +201,16 @@ export interface OpSet {
   path?: string;
 }
 
+export type DrawableShape = 'line' | 'rectangle' | 'ellipse' | 'circle' |
+    'linearPath' | 'arc' | 'curve' | 'polygon' | 'path'
 /**
  * A drawable object containing the instructions and options for a shape.
  */
 export interface Drawable {
   /**
-   * The basic primtive shape of the drawable.  Can be: `line`, `rectangle`,
-   * `ellipse`, `circle`, `linearPath`, `arc`, `curve`, `polugon`, or `path`.
+   * The basic primtive shape of the drawable.
    */
-  shape: string;
+  shape: DrawableShape;
 
   /**
    * Options that should be used when rendering to a canvas or SVG element.

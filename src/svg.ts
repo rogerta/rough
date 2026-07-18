@@ -4,7 +4,7 @@ import { RoughGenerator } from './generator';
 import type { Point } from './geometry';
 
 /**
- * Creates SVG elements that can be placed within an <svg> to
+ * Creates SVG elements that can be placed within an `<svg>` to
  * render rough shapes.
  *
  * Each of the basic shape drawing methods (line, rectangle, circle, etc)
@@ -13,7 +13,7 @@ import type { Point } from './geometry';
  * example, when `line()` is called, the root of the returned SVG tree is the
  * element `<g class="line">`.
  *
- * The root element contains up to two <path> SVG elements, one each for the
+ * The root element contains up to two `<path>` SVG elements, one each for the
  * outline and the fill.  If both are present, the fill preceeds the outline.
  *
  * The outline element's class list contains the class `outline`.

@@ -1,6 +1,7 @@
 import type { Config } from './core';
 import { RoughCanvas } from './canvas';
 import { RoughGenerator } from './generator';
+import { randomSeed } from './math';
 import { RoughSVG } from './svg';
 
 export * from './core';
@@ -10,13 +11,13 @@ export { RoughGenerator } from './generator';
 export { RoughSVG } from './svg';
 
 /**
- * Creates a `RoughCanvas` instance for drawing on an HTML canvas.
- * `RoughCanvas` can only be used in browser contexts since it depends
- * on the Canvas API and `HTMLCanvasElement`.
+ * Creates a RoughCanvas instance for drawing on an HTML canvas.
+ * RoughCanvas can only be used in browser contexts since it depends
+ * on the Canvas API and HTMLCanvasElement.
  *
- * @param canvas The `HTMLCanvasElement` to draw on.
+ * @param canvas The HTMLCanvasElement to draw on.
  * @param config Optional configuration.
- * @returns A new `RoughCanvas` instance.
+ * @returns A new RoughCanvas instance.
  */
 export function canvas(
     canvas: HTMLCanvasElement,
@@ -25,21 +26,21 @@ export function canvas(
 }
 
 /**
- * Creates a `RoughSVG` instance for drawing on an SVG element.
- * `RoughSVG` can only be used in browser contexts since it depends
- * on the Canvas API and `SVGSVGElement`.
+ * Creates a RoughSVG instance for drawing on an SVG element.
+ * RoughSVG can only be used in browser contexts since it depends
+ * on the SVG API and SVGSVGElement.
  *
- * @param svg The `SVGSVGElement` to draw on.
+ * @param svg The SVGSVGElement to draw on.
  * @param config Optional configuration.
- * @returns A new `RoughSVG` instance.
+ * @returns A new RoughSVG instance.
  */
 export function svg(svg: SVGSVGElement, config?: Config): RoughSVG {
   return new RoughSVG(svg, config);
 }
 
 /**
- * Creates a `RoughGenerator` instance for generating drawable shapes.
- * `RoughGenerator` has not dependency on the browser contexts and can be
+ * Creates a RoughGenerator instance for generating drawable shapes.
+ * RoughGenerator has no dependency on the browser context and can be
  * used server-side for shape generation.
  *
  * @param config Optional configuration for the RoughGenerator.
@@ -54,6 +55,6 @@ export function generator(config?: Config): RoughGenerator {
  * @returns A new random seed as a number.
  */
 export function newSeed(): number {
-  return RoughGenerator.newSeed();
+  return randomSeed();
 }
 

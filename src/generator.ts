@@ -1,7 +1,6 @@
 import type { Config, Options, Drawable, DrawableShape, OpSet, Op, ResolvedOptions, PathInfo } from './core.js';
 import type { Point } from './geometry.js';
 import { line, solidFillPolygon, patternFillPolygons, rectangle, ellipseWithParams, generateEllipseParams, linearPath, arc, patternFillArc, curve, svgPath } from './renderer.js';
-import { randomSeed } from './math.js';
 import { curveToBezier } from 'points-on-curve/lib/curve-to-bezier.js';
 import { pointsOnBezierCurves } from 'points-on-curve';
 import { pointsOnPath } from 'points-on-path';
@@ -9,16 +8,18 @@ import { pointsOnPath } from 'points-on-path';
 const NOS = 'none';
 
 /**
- * `RoughGenerator` creates `Drawable` objects which are rough representations
- * of basic shapes such as lines, rectangles, circles, and such.
+ * Creates Drawable objects which are rough representations of basic shapes
+ * such as lines, rectangles, circles, and such.  RoughGenerator uses the
+ * low level functions in `renderer.ts` to create Drawable objects which are
+ * rough representations of the basic shapes.
  *
- * A `Drawable` contains an array of `OpSet` objects that describe the fill
+ * A Drawable contains an array of OpSet objects that describe the fill
  * and/or outline of the shape.  If the Drawable is both filled and outlined,
- * the `OpSet`s representing the fill appear before the `OpSet`s representing
- * the outline.  Generally `Drawable`s are passed to either `RoughCanvas` or
- * `RoughSVG` to render the shape onto the respective surface.
+ * the OpSets representing the fill appear before the OpSets representing
+ * the outline.  Generally Drawables are passed to either RoughCanvas or
+ * RoughSVG to render the shapes onto their respective surface.
  *
- * This module does not depend on any browser context and may be used in
+ * This module does not depend on the browser contaxt and may be used in
  * server-side envrionments such as Node.js, Deno, Bun, etc.
  */
 export class RoughGenerator {
@@ -67,14 +68,6 @@ export class RoughGenerator {
     if (this.config.options) {
       this.defaultOptions = this._o(this.config.options);
     }
-  }
-
-  /**
-   * Generates a new random seed.
-   * @returns A new random seed as a number.
-   */
-  static newSeed(): number {
-    return randomSeed();
   }
 
   /** @ignore */
@@ -172,7 +165,7 @@ export class RoughGenerator {
   }
 
   /**
-   * Generates a linear path.
+   * Generates a linear path.  The path is not closed.
    * @param points An array of points representing the path.
    * @param options Optional overrides for the drawing options.
    * @returns A Drawable object representing the linear path.
@@ -216,7 +209,7 @@ export class RoughGenerator {
   }
 
   /**
-   * Generates a curve.
+   * Generates a curve.  The curve is not closed.
    * @param points An array of points or an array of arrays of points (for multiple paths) representing the curve.
    * @param options Optional overrides for the drawing options.
    * @returns A Drawable object representing the curve.

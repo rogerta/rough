@@ -4,7 +4,7 @@ import { RoughGenerator } from './generator';
 import type { Point } from './geometry';
 
 /**
- * Creates SVG elements that can be placed within an `<svg>` to
+ * Creates SVG elements that can be placed within an <svg> to
  * render rough shapes.
  *
  * Each of the basic shape drawing methods (line, rectangle, circle, etc)
@@ -13,14 +13,26 @@ import type { Point } from './geometry';
  * example, when `line()` is called, the root of the returned SVG tree is the
  * element `<g class="line">`.
  *
- * The root element contains up to two `<path>` SVG elements, one each for the
+ * The root element contains up to two <path> SVG elements, one each for the
  * outline and the fill.  If both are present, the fill preceeds the outline.
  *
- * The outline element's class list contains the class `outline`.  The fill
- * element's class list contains the class `solid-fill` for shapes created with
- * the option `fillStylex=solid` or `pattern-fill` for the other fill styles
- * (see `Options` interface for more details).  These classes can be used to
- * better target CSS presentation properties of the SVG elements.
+ * The outline element's class list contains the class `outline`.
+ *
+ * The fill element's class list depends on the `fillStyle` used creating
+ * the shape.  If the `fillStyle` is `solid`, the class list contains the
+ * class `solid-fill`.  For all other fill styles, the class list contains
+ * the class `pattern-fill`.
+ *
+ * For example, calling `rectangle()` with a stroke and fill style of solid
+ * will return an SVG element as follows:
+ * ```
+ *   <g class="rectangle">
+ *     <path class="solid-fill" ...></path>
+ *     <path class="outline" ...></path>
+ *   </g>
+ * ```
+ * These classes can be used to better target CSS presentation properties of
+ * the SVG elements.
  */
 export class RoughSVG {
   /** @ignore */
@@ -39,8 +51,8 @@ export class RoughSVG {
   }
 
   /**
-   * Draws a Drawable object and returns an SVG G element containing the shape.
-   * @param drawable The Drawable object to draw.
+   * Creates an SVG element corresponding to the given Drawable.
+   * @param drawable The Drawable object to use as a template.
    * @returns An SVGGElement containing the rendered shape.
    */
   draw(drawable: Drawable): SVGGElement {
@@ -151,7 +163,7 @@ export class RoughSVG {
   }
 
   /**
-   * Draws a line as an SVG element.
+   * Creates an SVG element representing a line.
    * @param x1 The x-coordinate of the start point.
    * @param y1 The y-coordinate of the start point.
    * @param x2 The x-coordinate of the end point.
@@ -170,7 +182,7 @@ export class RoughSVG {
   }
 
   /**
-   * Draws a rectangle as an SVG element.
+   * Creates an SVG element representing a rectangle.
    * @param x The x-coordinate of the top-left corner.
    * @param y The y-coordinate of the top-left corner.
    * @param width The width of the rectangle.
@@ -189,7 +201,7 @@ export class RoughSVG {
   }
 
   /**
-   * Draws an ellipse as an SVG element.
+   * Creates an SVG element representing an ellipse.
    * @param x The x-coordinate of the center.
    * @param y The y-coordinate of the center.
    * @param width The width of the ellipse.
@@ -208,7 +220,7 @@ export class RoughSVG {
   }
 
   /**
-   * Draws a circle as an SVG element.
+   * Creates an SVG element representing a circle.
    * @param x The x-coordinate of the center.
    * @param y The y-coordinate of the center.
    * @param diameter The diameter of the circle.
@@ -225,7 +237,7 @@ export class RoughSVG {
   }
 
   /**
-   * Draws a linear path as an SVG element.
+   * Creates an SVG element representing a linear path.  The path is not closed.
    * @param points An array of points representing the path.
    * @param options Optional overrides for the drawing options.
    * @returns An SVGGElement containing the linear path.
@@ -236,7 +248,7 @@ export class RoughSVG {
   }
 
   /**
-   * Draws a polygon as an SVG element.
+   * Creates an SVG element representing a polygon.
    * @param points An array of points representing the polygon.
    * @param options Optional overrides for the drawing options.
    * @returns An SVGGElement containing the polygon.
@@ -247,7 +259,7 @@ export class RoughSVG {
   }
 
   /**
-   * Draws an arc as an SVG element.
+   * Creates an SVG element representing an arc.
    * @param x The x-coordinate of the center.
    * @param y The y-coordinate of the center.
    * @param width The width of the arc.
@@ -273,7 +285,7 @@ export class RoughSVG {
   }
 
   /**
-   * Draws a curve as an SVG element.
+   * Creates an SVG element representing a curve.  The curve is not closed.
    * @param points An array of points or an array of arrays of points (for
    *    multiple paths) representing the curve.
    * @param options Optional overrides for the drawing options.
@@ -285,6 +297,7 @@ export class RoughSVG {
   }
 
   /**
+   * Creates an SVG element from an SVG path.
    * Draws a shape from an SVG path string as an SVG element.
    * @param d The SVG path string.
    * @param options Optional overrides for the drawing options.

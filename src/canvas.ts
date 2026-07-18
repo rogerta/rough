@@ -181,7 +181,7 @@ export class RoughCanvas {
   }
 
   /**
-   * Draws a linear path.
+   * Draws a linear path.  The path is not closed.
    * @param points An array of points representing the path.
    * @param options Optional overrides for the drawing options.
    * @returns A Drawable object representing the linear path.
@@ -223,7 +223,7 @@ export class RoughCanvas {
   }
 
   /**
-   * Draws a curve.
+   * Draws a curve.  The path is not closed.
    * @param points An array of points or an array of arrays of points (for multiple paths) representing the curve.
    * @param options Optional overrides for the drawing options.
    * @returns A Drawable object representing the curve.

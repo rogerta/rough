@@ -5,12 +5,13 @@ import { Random } from './math';
 export const SVGNS = 'http://www.w3.org/2000/svg';
 
 /**
- * Configuration object used when creating `RoughCanvas`, `RoughSVG`, and
- * `RoughGenerator` instances.
+ * Configuration object used when creating RoughCanvas, RoughSVG, and
+ * RoughGenerator instances.
  */
 export interface Config {
   /**
-   * Default options to be used by the roughjs instance.
+   * Default options to be used by the roughjs instance when drawing on a
+   * canvas, generating drawables, or creating SVG elements.
    */
   options?: Options;
 }
